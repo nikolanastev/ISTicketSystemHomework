@@ -1,0 +1,7 @@
+namespace Domain.Identity;
+
+public enum Role
+{
+    ROLE_USER,
+    ROLE_ADMIN
+}
