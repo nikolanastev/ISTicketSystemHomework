@@ -1,19 +1,33 @@
-@page
-@model Web.Views.Admin.Index
-
+@model Domain.DomainModels.Ticket
 @{
-    Layout = null;
+    ViewData["Title"] = "Admin Page";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
+<div class="container">
+    <h3>Export all tickets!</h3>
     
+    <div class="row ml-1">
+        <a class="btn btn-primary" asp-controller="Admin" asp-action="ExportAllTickets">Export All Tickets</a>
+    </div>
+    <br />
+    <br />
+    
+    <h3>Export only tickets of a specific genre</h3>
+    <form asp-action="ExportTicketsFromGenre" method="post">
+        <select asp-for="MovieGenre" asp-items="Html.GetEnumSelectList<Domain.DomainModels.Genre>()"></select>
+        <br />
+        <span asp-validation-for="MovieGenre" class="text-danger"></span>
+        <button type="submit" class="btn btn-primary">Export Tickets</button>
+    </form>
+    
+    <br />
+    <br />
+    
+    <h3>Import users</h3>
+    <form asp-controller="Admin" asp-action="ImportUsers" method="post" enctype="multipart/form-data">
+        <div class="form-group w-25">
+            <input type="file" name="file" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary"Import Users From Excel File></button>
+    </form>
 </div>
-</body>
-</html>

@@ -1,19 +1,20 @@
 @page
-@model Web.Views.Account.ChangeUserRole
+@model Domain.Identity.CinemaApplicationUser
 
 @{
-    Layout = null;
+    ViewData["Title"] = "ChangeUserRole";
 }
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
-</div>
-</body>
-</html>
+<h4>Change User Role</h4>
+<br />
+<form asp-action="ChangeUserRole" method="post">
+    @Html.HiddenFor(m => m.Id)
+    <select asp-for="Role" asp-items="Html.GetEnumSelectList<Domain.Identity.Role>()">
+        <option value="">Select Desired Role</option>
+    </select>
+    <br />
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+

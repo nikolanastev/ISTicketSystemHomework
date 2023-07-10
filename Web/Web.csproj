@@ -5,18 +5,36 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-Web-425B75AC-EBDF-4099-A77B-18A0FAAC76EE</UserSecretsId>
+        <LangVersion>latestmajor</LangVersion>
+        <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
+        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.7"/>
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.7"/>
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.7"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.7"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7"/>
+        <PackageReference Include="Bootstrap.Datepicker" Version="1.8.0.1" />
+        <PackageReference Include="ClosedXML" Version="0.102.0" />
+        <PackageReference Include="DevExpress.Data" Version="23.1.3" />
+        <PackageReference Include="ExcelDataReader" Version="3.7.0-develop00371" />
+        <PackageReference Include="GemBox.Document" Version="35.0.1423" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.5.23280.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.7" />
+        <PackageReference Include="Stripe" Version="1.12.0" />
+        <PackageReference Include="Stripe.net" Version="41.23.0" />
+        <PackageReference Include="System.Security.Claims" Version="4.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\Repository\Repository.csproj" />
+      <ProjectReference Include="..\Services\Services.csproj" />
     </ItemGroup>
 
 </Project>

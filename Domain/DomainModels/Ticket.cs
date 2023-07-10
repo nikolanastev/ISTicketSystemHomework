@@ -39,6 +39,6 @@ public class Ticket : BaseEntity
     public DateTime EndDate { get; set; }
     
     public virtual ICollection<TicketInShoppingCart> TicketsInShoppingCarts { get; set; }
-    public virtual ICollection<TicketInOrder> TicketsInOrders { get; set; }
+    public virtual ICollection<TicketInOrder> TicketsInOrder { get; set; }
     
 }

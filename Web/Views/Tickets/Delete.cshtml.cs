@@ -1,12 +1,11 @@
-$HEADER$using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace $NAMESPACE$
+namespace Web.Views.Tickets;
+
+public class Delete : PageModel
 {
-    public class $CLASS$ : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-	          $END$
-        }
+        
     }
 }

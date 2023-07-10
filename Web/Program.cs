@@ -1,6 +1,14 @@
+using Domain;
+using Domain.Identity;
+using Repository.Interface;
+using Repository;
+using Services;
+using Services.Implementation;
+using Services.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Web.Data;
+using Repository.Implementation;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +23,26 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddRazorPages();
+
+EmailSettings emailService = new EmailSettings();
+
+builder.Services.Configure<StripeSettings>("Stripe", builder.Configuration.GetSection("Stripe"));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+builder.Services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
+builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddTransient<IOrderService, Services.Implementation.OrderService>();
+builder.Services.AddTransient<ITicketService, Services.Implementation.TicketService>();
+builder.Services.AddTransient<IUserService, Services.Implementation.UserService>();
+builder.Services.AddScoped<EmailSettings>(es => emailService);
+builder.Services.AddScoped<IEmailService, EmailService>(email => new EmailService(emailService));
+builder.Services.AddScoped<IBackgroundEmailSender, BackgroundEmailSender>();
+builder.Services.AddHostedService<ConsumeScopedHostedService>();    
+
 var app = builder.Build();
+
+StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["SecretKey"]);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
